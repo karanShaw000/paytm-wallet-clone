@@ -6,7 +6,7 @@ import { authOptions } from "../lib/auth";
 export default async function onRamp(provider: string, amount: number) {
     const session = await getServerSession(authOptions);
 
-    if (!session?.user || !session.user?.id) {
+    if (!session?.user || !session?.user?.id) {
         return {
             message: "Unauthorzed User"
         }

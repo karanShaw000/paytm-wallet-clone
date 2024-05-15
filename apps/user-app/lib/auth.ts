@@ -1,3 +1,12 @@
+import type { DefaultSession, Session } from 'next-auth';
+
+declare module 'next-auth' {
+    interface Session {
+        user: DefaultSession['user'] & {
+            id: string;
+        };
+    }
+}
 import db from "@repo/db";
 import { AuthOptions } from "next-auth";
 import CrendentialsProvider from "next-auth/providers/credentials";
@@ -69,9 +78,15 @@ export const authOptions: AuthOptions = {
 
     secret: process.env.JWT_SECRET,
     callbacks: {
-        async session({ token, session }: any) {
-            session.user.id = token.sub;
-            return session
+
+        async session({ token, session }: { token: any, session: Session }) {
+            return {
+                ...session,
+                user: {
+                    ...session.user,
+                    id: token.sub,
+                }
+            }
         }
     }
 };

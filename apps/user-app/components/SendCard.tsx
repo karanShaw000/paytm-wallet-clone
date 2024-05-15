@@ -23,7 +23,7 @@ export function SendCard() {
                     <div className="pt-4 flex justify-center">
                         <Button onClick={async () => {
 
-                            const res = await p2pTransfer(Number(amount * 100), number);
+                            const res = await p2pTransfer(Number(amount) * 100, number);
                             if (res.message === "transaction successful") {
                                 setAmount("")
                                 setNumber("")
