@@ -1,4 +1,13 @@
 
+
+
+
+
+
+
+
+
+
 import prisma from "@repo/db";
 import { AddMoneyCard } from "../../../components/AddMoneyCard";
 import { BalanceCard } from "../../../components/BalanceCard";
